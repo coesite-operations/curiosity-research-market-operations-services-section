@@ -31,6 +31,23 @@ cd <this repository>
 node ~/services/curiosity-research-market-service/src/serve-procurement-a2a.mjs
 ```
 
-The deployment units in `content/deployment/systemd-user/` name the checkout paths they expect; they still point at the pre-extraction layout and must be updated to the engine location when next deployed (not changed here, as they are data).
+The three existing systemd user units in `content/deployment/systemd-user/` now
+reference the engine at the documented **expected checkout** `/home/emsenn/services/curiosity-research-market-service`.
+They use `CURIOSITY_RESEARCH_MARKET_ROOT` to locate the original instance
+`content/` and `data/` under their unchanged `WorkingDirectory`, rather than
+the unused legacy `CURIOSITY_RESEARCH_MARKET_DATA_ROOT` setting. The
+source configuration was corrected on 27 October 2026; **no on-host checkout
+placement, installed npm dependency, systemd daemon reload, service start,
+live Agent Card, or end-to-end settlement has been verified**.
+
+Before the units can be installed, an Operations receiver must independently
+verify that the engine's documented checkout actually exists at that path,
+the original `WorkingDirectory` contains the intended instance configuration,
+the required runtime-only signing credentials are present with appropriate
+permissions, and the original contract and payment asset are admitted. The
+existing `content/config/activation.json` still sets
+`liveProcurement: refused` and `paymentAsset: null`; source repairs
+do not activate a paid research marketplace. The units' existing security
+sandbox, ports, data write paths, and settlement identity are unchanged.
 
 Received by the engine 2026-10-23 from this repository at `f5d4c261ff904fd4b1cdb5791e0db34d6f566565`.
