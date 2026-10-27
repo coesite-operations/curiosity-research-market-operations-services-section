@@ -5,8 +5,8 @@ After=network.target
 [Service]
 Type=simple
 WorkingDirectory=/home/emsenn/bare-cedar-fog/services/operations-services-section/services/market-services-section/services/curiosity-research-market-enterprise
-ExecStart=/home/emsenn/.config/nvm/versions/node/v24.13.1/bin/node src/serve-assignment-admission-a2a.mjs
-Environment=CURIOSITY_RESEARCH_MARKET_DATA_ROOT=/home/emsenn/bare-cedar-fog/services/operations-services-section/services/market-services-section/services/curiosity-research-market-enterprise/data
+ExecStart=/home/emsenn/.config/nvm/versions/node/v24.13.1/bin/node /home/emsenn/services/curiosity-research-market-service/src/serve-assignment-admission-a2a.mjs
+Environment=CURIOSITY_RESEARCH_MARKET_ROOT=/home/emsenn/bare-cedar-fog/services/operations-services-section/services/market-services-section/services/curiosity-research-market-enterprise
 Restart=on-failure
 RestartSec=5s
 NoNewPrivileges=true
